@@ -10,3 +10,8 @@ import "../js/settings.js"
 import "../js/todolist.js"
 import "../js/jquery.cookie.js"
 import "../js/dashboard.js"
+
+// computer table
+import "../vendors/datatables.net/jquery.dataTables.js"
+import "../vendors/datatables.net-bs4/dataTables.bootstrap4.js"
+import "../js/data-table.js"

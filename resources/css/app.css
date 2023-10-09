@@ -1,5 +1,6 @@
 /*@import "vertical-layout-light.css";*/
 @import "horizontal-layout-light.css";
+@import "computer-table.css";
 
 @tailwind base;
 @tailwind components;
