@@ -622,7 +622,14 @@
                                                         <div class="card card-gradient">
                                                             <div class="card-body">
                                                                 <div class="circle-shadow-primary">
-                                                                    <i class="mdi mdi-chart-line"></i>
+                                                                    <svg viewBox="0 0 24 24" width="20">
+                                                                        <path
+                                                                            class="tw-white"
+                                                                            fill="currentColor"
+                                                                            d="m10,23c0,.553-.448,1-1,1h-4c-2.757,0-5-2.243-5-5V7C0,4.243,2.243,2,5,2h.171c.413-1.164,1.525-2,2.829-2h2c1.304,0,2.416.836,2.829,2h.171c2.757,0,5,2.243,5,5v3c0,.552-.447,1-1,1s-1-.448-1-1v-3c0-1.654-1.346-3-3-3h-1c-.552,0-1-.448-1-1s-.449-1-1-1h-2c-.551,0-1,.449-1,1s-.448,1-1,1h-1c-1.654,0-3,1.346-3,3v12c0,1.654,1.346,3,3,3h4c.552,0,1,.447,1,1Zm-1.207-16.287l-2.227,2.227c-.078.079-.204.082-.286.006l-1.105-1.013c-.407-.373-1.04-.344-1.413.062-.373.407-.346,1.04.062,1.413l1.105,1.013c.424.389.958.582,1.491.582.565,0,1.129-.217,1.56-.648l2.227-2.227c.391-.391.391-1.023,0-1.414s-1.023-.391-1.414,0Zm0,6.08l-2.227,2.227c-.078.079-.204.081-.286.006l-1.105-1.013c-.407-.373-1.04-.345-1.413.062-.373.407-.346,1.04.062,1.413l1.105,1.013c.424.389.958.582,1.491.582.565,0,1.129-.218,1.56-.648l2.227-2.227c.391-.391.391-1.023,0-1.414s-1.023-.391-1.414,0Zm15.207,3.707v4c0,1.93-1.57,3.5-3.5,3.5h-5c-1.93,0-3.5-1.57-3.5-3.5v-4c0-1.93,1.57-3.5,3.5-3.5h5c1.93,0,3.5,1.57,3.5,3.5Zm-2,0c0-.827-.673-1.5-1.5-1.5h-5c-.827,0-1.5.673-1.5,1.5v4c0,.827.673,1.5,1.5,1.5h5c.827,0,1.5-.673,1.5-1.5v-4Zm-3,.5h-2c-.553,0-1,.447-1,1s.447,1,1,1h2c.553,0,1-.447,1-1s-.447-1-1-1Zm-5-7c0-.552-.447-1-1-1h-1.5c-.552,0-1,.448-1,1s.448,1,1,1h1.5c.553,0,1-.448,1-1Z"
+                                                                        />
+                                                                    </svg>
+
                                                                 </div>
                                                                 <h6>Asset all type</h6>
                                                                 <p>{{ round($computers['all_inventory']*100/$computers['all_inventory'],2) }}
@@ -689,13 +696,13 @@
                                                     <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
                                                         <div class="card card-gradient">
                                                             <div class="card-body">
-                                                                <div class="circle-shadow-success">
+                                                                <div class="circle-shadow-dark">
                                                                     <i class="mdi mdi-wallet"></i>
                                                                 </div>
                                                                 <h6>All in one</h6>
                                                                 <p>{{ round($computers['all_in_one']*100/$computers['all_inventory'],2) }}
                                                                     %</p>
-                                                                <h5 class="text-success">{{$computers['all_in_one']}}</h5>
+                                                                <h5 class="text-dark">{{$computers['all_in_one']}}</h5>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -736,6 +743,25 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 grid-margin stretch-card">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">จำนวนคอมพิวเตอร์ แยกอายุ</h4>
+                                                        <canvas id="donutChartYear"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 grid-margin stretch-card">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">อายุคอมพิวเตอร์ แยกอาคาร</h4>
+                                                        <canvas id="barChartYear"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -805,7 +831,7 @@
                 borderWidth: 1
             },
             {
-                label: "อาคารวิทยาลัยนานาชาติ",
+                label: "อาคารอทิตยาทร",
                 data: [pc_aditayathorn_building, notebooks_aditayathorn_building, monitors_aditayathorn_building, all_in_one_aditayathorn_building, workstations_aditayathorn_building],
                 backgroundColor: [
                     "rgba(50,150,200,0.3)",
@@ -841,7 +867,7 @@
                         const sum = context.dataset.data.reduce((total, datapoint) => {
                             return total + datapoint;
                         })
-                        return `${context.value} of a total`;
+                        return `${context.value} item`;
                     },
                     position: 'outside',
                     textMargin: 6
@@ -882,7 +908,7 @@
         }],
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
-        labels: ["PC Set", "Notebook","Monitors", "All in one","Workstations"]
+        labels: ["PC Set", "Notebook", "Monitors", "All in one", "Workstations"]
     };
 
     const configDonutChart = {
@@ -930,6 +956,178 @@
         configDonutChart
     );
 
+
+    let less_three_years = {!! json_encode($count_uear_computer['less_three_years']) !!};
+    let three_years = {!! json_encode($count_uear_computer['three_years']) !!};
+    let five_years = {!! json_encode($count_uear_computer['five_years']) !!};
+    let seven_years = {!! json_encode($count_uear_computer['seven_years']) !!};
+
+    let lessThree_years_computer_muic_building = {!! json_encode($year_computer_for_building['lessThree_years_computer_muic_building']) !!};
+    let three_years_computer_muic_building = {!! json_encode($year_computer_for_building['three_years_computer_muic_building']) !!};
+    let five_years_computer_muic_building = {!! json_encode($year_computer_for_building['five_years_computer_muic_building']) !!};
+    let sever_years_computer_muic_building = {!! json_encode($year_computer_for_building['sever_years_computer_muic_building']) !!};
+
+    let lessThree_years_computer_aditayathorn_building = {!! json_encode($year_computer_for_building['lessThree_years_computer_aditayathorn_building']) !!};
+    let three_years_computer_aditayathorn_building = {!! json_encode($year_computer_for_building['three_years_computer_aditayathorn_building']) !!};
+    let five_years_computer_aditayathorn_building = {!! json_encode($year_computer_for_building['five_years_computer_aditayathorn_building']) !!};
+    let sever_years_computer_aditayathorn_building = {!! json_encode($year_computer_for_building['sever_years_computer_aditayathorn_building']) !!};
+
+
+    let barDataYear = {
+        labels: ["อาคารวิทยาลัยนานาชาติ", "อาคารอทิตยาทร"],
+        datasets: [
+            {
+                label: "0 - 3 ปี",
+                data: [lessThree_years_computer_muic_building, lessThree_years_computer_aditayathorn_building],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+
+                ],
+                borderWidth: 1
+            },
+            {
+                label: "3 ปี 1 เดือน - 5 ปี",
+                data: [three_years_computer_muic_building, three_years_computer_aditayathorn_building],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.5)',
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1
+            },
+            {
+                label: "5 ปี 1 เดือน - 7 ปี",
+                data: [five_years_computer_muic_building, five_years_computer_aditayathorn_building],
+                backgroundColor: [
+                    'rgba(255, 206, 86, 0.5)',
+                ],
+                borderColor: [
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1
+            },
+            {
+                label: "7 ปีขึ้นไป",
+                data: [sever_years_computer_muic_building, sever_years_computer_aditayathorn_building],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.5)',
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            },
+        ]
+    };
+    const configBarChartYear = {
+        type: 'bar',
+        data: barDataYear,
+        options: {
+            layout: {
+                padding: {
+                    top: 15
+                }
+            },
+            plugins: {
+                labels: {
+                    render: (context) => {
+                        // console.log(context.dataset.data)
+                        const sum = context.dataset.data.reduce((total, datapoint) => {
+                            return total + datapoint;
+                        })
+                        return `${context.value} item`;
+                    },
+                    position: 'outside',
+                    textMargin: 6
+                },
+                legend: {
+                    position: 'bottom',
+                    padding: {
+                        top: 15
+                    }
+                },
+            }
+        }
+    }
+    const barChartYear = new Chart(
+        document.getElementById('barChartYear'),
+        configBarChartYear
+    );
+
+    let donutDataYear = {
+        datasets: [{
+            data: [less_three_years, three_years, five_years, seven_years],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+        }],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+        labels: ["0 - 3 ปี", "3 ปี 1 เดือน - 5 ปี", "5 ปี 1 เดือน - 7 ปี", "7 ปีขึ้นไป"]
+    };
+
+    const configDonutChartYear = {
+        type: 'doughnut',
+        data: donutDataYear,
+        options: {
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 10,
+                    bottom: 0
+                }
+            },
+            plugins: {
+                labels: {
+                    render: (context) => {
+                        // console.log(context.dataset.data)
+                        const sum = context.dataset.data.reduce((total, datapoint) => {
+                            return total + datapoint;
+                        })
+                        return `${context.value} item`;
+                    },
+                    position: 'center',
+                    textMargin: 6
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        pointStyle: 'circle',
+                        usePointStyle: true
+                    }
+                },
+            }
+        },
+        plugins: [{
+            id: "increase-legend-spacing",
+            afterFit: function () {
+                this.height = this.height + 50;
+            },
+        }]
+    }
+    const donutChartYear = new Chart(
+        document.getElementById('donutChartYear'),
+        configDonutChartYear
+    );
 
 </script>
 </body>

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('asset_name');
             $table->string('asset_status');
             $table->string('asset_group');
-            $table->string('asset_date');
+            $table->string('asset_date')->nullable();
             $table->string('objective');
             $table->string('project_service');
             $table->string('owner');
