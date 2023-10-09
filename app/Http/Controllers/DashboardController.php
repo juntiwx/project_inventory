@@ -32,20 +32,27 @@ class DashboardController extends Controller
         $computer_with_location = [
             'pc_muic_building' => Item::query()->whereRaw('asset_type = 1 AND asset_status LIKE "กำลังใช้งาน"')->whereIn('location', $location_muic_building)->count(),
             'notebooks_muic_building' => Item::query()->whereRaw('asset_type = 2 AND asset_status LIKE "กำลังใช้งาน"')->whereIn('location', $location_muic_building)->count(),
+            'monitors_muic_building' => Item::query()->whereRaw('asset_type = 4 AND asset_status LIKE "กำลังใช้งาน"')->whereIn('location', $location_muic_building)->count(),
             'all_in_one_muic_building' => Item::query()->whereRaw('asset_type = 6 AND asset_status LIKE "กำลังใช้งาน"')->whereIn('location', $location_muic_building)->count(),
+            'workstations_muic_building' => Item::query()->whereRaw('asset_type = 21 AND asset_status LIKE "กำลังใช้งาน"')->whereIn('location', $location_muic_building)->count(),
             'pc_aditayathorn_building' => Item::query()->whereRaw('asset_type = 1 AND asset_status LIKE "กำลังใช้งาน"')->whereIn('location', $location_aditayathorn_building)->count(),
             'notebooks_aditayathorn_building' => Item::query()->whereRaw('asset_type = 2 AND asset_status LIKE "กำลังใช้งาน"')->whereIn('location', $location_aditayathorn_building)->count(),
+            'monitors_aditayathorn_building' => Item::query()->whereRaw('asset_type = 4 AND asset_status LIKE "กำลังใช้งาน"')->whereIn('location', $location_aditayathorn_building)->count(),
             'all_in_one_aditayathorn_building' => Item::query()->whereRaw('asset_type = 6 AND asset_status LIKE "กำลังใช้งาน"')->whereIn('location', $location_aditayathorn_building)->count(),
+            'workstations_aditayathorn_building' => Item::query()->whereRaw('asset_type = 21 AND asset_status LIKE "กำลังใช้งาน"')->whereIn('location', $location_aditayathorn_building)->count(),
         ];
 
         //for all
         $computers = [
+            'all_inventory' => Item::query()->count(),
             'pc' => Item::query()->whereRaw('asset_type = 1 AND asset_status LIKE "กำลังใช้งาน"')->count(),
             'notebooks' => Item::query()->whereRaw('asset_type = 2 AND asset_status LIKE "กำลังใช้งาน"')->count(),
-            'all_in_one' => Item::query()->whereRaw('asset_type = 6 AND asset_status LIKE "กำลังใช้งาน"')->count()
+            'monitors' => Item::query()->whereRaw('asset_type = 4 AND asset_status LIKE "กำลังใช้งาน"')->count(),
+            'all_in_one' => Item::query()->whereRaw('asset_type = 6 AND asset_status LIKE "กำลังใช้งาน"')->count(),
+            'workstations' => Item::query()->whereRaw('asset_type = 21 AND asset_status LIKE "กำลังใช้งาน"')->count(),
         ];
 
-        return view('horizontal-default-light/index', [
+        return view('index', [
             'computer_with_location' => $computer_with_location,
             'computers' => $computers,
         ]);
